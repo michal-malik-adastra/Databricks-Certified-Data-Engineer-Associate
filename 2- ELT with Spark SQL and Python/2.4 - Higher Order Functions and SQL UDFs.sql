@@ -51,7 +51,7 @@ SELECT
   TRANSFORM (
     books,
     b -> CAST(b.subtotal * 0.8 AS INT)
-  ) AS subtotal_after_discount
+  )[0] AS subtotal_after_discount
 FROM orders;
 
 -- COMMAND ----------
@@ -97,5 +97,21 @@ FROM customers
 
 -- COMMAND ----------
 
+describe function extended site_type
+
+-- COMMAND ----------
+
+SHOW USER FUNCTIONS;
+
+-- COMMAND ----------
+
+DESCRIBE FUNCTION extended spark_catalog.default.site_type
+
+-- COMMAND ----------
+
 DROP FUNCTION get_url;
 DROP FUNCTION site_type;
+
+-- COMMAND ----------
+
+

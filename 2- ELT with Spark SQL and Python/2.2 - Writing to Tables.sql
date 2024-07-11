@@ -20,6 +20,10 @@ SELECT * FROM orders
 
 -- COMMAND ----------
 
+describe extended orders
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC ## Overwriting Tables
 
@@ -31,6 +35,10 @@ SELECT * FROM parquet.`${dataset.bookstore}/orders`
 -- COMMAND ----------
 
 DESCRIBE HISTORY orders
+
+-- COMMAND ----------
+
+select * from orders@v0;
 
 -- COMMAND ----------
 
@@ -97,3 +105,7 @@ USING books_updates u
 ON b.book_id = u.book_id AND b.title = u.title
 WHEN NOT MATCHED AND u.category = 'Computer Science' THEN 
   INSERT *
+
+-- COMMAND ----------
+
+

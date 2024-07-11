@@ -77,7 +77,7 @@ FROM orders
 -- COMMAND ----------
 
 SELECT order_id, customer_id, explode(books) AS book 
-FROM orders
+FROM orders order by customer_id
 
 -- COMMAND ----------
 
@@ -170,6 +170,11 @@ SELECT * FROM (
     'B01', 'B02', 'B03', 'B04', 'B05', 'B06',
     'B07', 'B08', 'B09', 'B10', 'B11', 'B12'
   )
-);
+)
+;
 
 SELECT * FROM transactions
+
+-- COMMAND ----------
+
+

@@ -37,6 +37,11 @@ display(files)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC select * from orders_raw_temp
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC
 # MAGIC ## Enriching Raw Data
@@ -75,6 +80,11 @@ display(files)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC SELECT count(*) FROM orders_bronze
+
+# COMMAND ----------
+
 load_new_data()
 
 # COMMAND ----------
@@ -105,6 +115,10 @@ load_new_data()
 (spark.readStream
   .table("orders_bronze")
   .createOrReplaceTempView("orders_bronze_tmp"))
+
+# COMMAND ----------
+
+spark.read.format("json").load(f"{dataset_bookstore}/customers-json").createOrReplaceTempView("customers_lookup")
 
 # COMMAND ----------
 
@@ -177,7 +191,7 @@ load_new_data()
 
 # COMMAND ----------
 
-load_new_data()
+load_new_data(all=True)
 
 # COMMAND ----------
 
